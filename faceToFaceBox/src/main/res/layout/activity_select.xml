@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:padding="0dp" >
+
+    <LinearLayout
+        android:id="@+id/ll_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_photo"
+        android:orientation="vertical"
+        android:padding="0dp" >
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_photo"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:focusable="false"
+            android:layout_margin="20dp"
+            />
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+             >
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_yeyey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yeye"
+               	android:drawableTop="@drawable/ye"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_baba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/baba"
+               	android:drawableTop="@drawable/ba"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_erzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/erzi"
+               	android:drawableTop="@drawable/er"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_sunzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunzi"
+               	android:drawableTop="@drawable/sun"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_haoyou1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/haoyou"
+               	android:drawableTop="@drawable/hao"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+             >
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_nainai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nainai"
+               	android:drawableTop="@drawable/nai"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_mama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mama"
+               	android:drawableTop="@drawable/ma"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_nver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nver"
+               	android:drawableTop="@drawable/nv"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_suner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/suner"
+               	android:drawableTop="@drawable/sn"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_haoyou2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/haoyou"
+               	android:drawableTop="@drawable/hy"
+               	android:textColor="@color/white"
+               	android:textSize="12sp"
+               	android:gravity="center"
+               	android:focusable="true"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+                />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+             >
+            
+            <com.lianyao.ftfbox.domain.view.DyneTextView
+                android:id="@+id/dtv_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:background="@drawable/btn"
+                android:text="@string/cancle"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:focusable="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                />
+            
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+</RelativeLayout>
