@@ -343,8 +343,6 @@ public class RtcClient {
 				activeNetwork = networkInfo;
 			}
 
-			Log.i("Active Network Type", networkInfo.getTypeName());
-
 			if (networkInfo != null && networkInfo.isAvailable() && (activeNetwork.getType() != networkInfo.getType())) {
 				activeNetwork = networkInfo;
 
