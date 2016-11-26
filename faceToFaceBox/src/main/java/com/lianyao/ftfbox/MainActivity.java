@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -223,7 +224,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     void update() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(new File(Environment
-                        .getExternalStorageDirectory(), "LNFaceToFace.apk")),
+                        .getExternalStorageDirectory(), "LNFaceToFaceBox.apk")),
                 "application/vnd.android.package-archive");
         startActivity(intent);
     }
@@ -620,6 +621,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                 .findViewById(R.id.dtv_jietingshi);
         dtv_jietingfou = (DyneTextView) yuyinshipinView
                 .findViewById(R.id.dtv_jietingfou);
+
         // 接听
         dtv_jietingshi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -879,6 +881,29 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
         localRenderLayout.setPosition(local[0], local[1], local[2], local[3]);
         localRenderLayout.requestLayout();
         remoteRenderLayout.requestLayout();
+    }
+
+    /**
+     * 返回键处理
+     */
+    @Override
+    public void onBackPressed() {
+        if (oppopupWindow != null)
+            oppopupWindow.dismiss();
+        if (popupWindow !=null)
+            popupWindow.dismiss();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if(keyCode== KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0){
+            if (oppopupWindow != null)
+                oppopupWindow.dismiss();
+            if (popupWindow !=null)
+                popupWindow.dismiss();
+        }
+        return false;
     }
 
     private class FriendInfoResult implements RestInterface {
@@ -1256,7 +1281,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showShort(MainActivity.this, "通过结束。");
+                            ToastUtil.showShort(MainActivity.this, "通话结束");
                             callOffView();
                         }
                     });
@@ -1265,7 +1290,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showShort(MainActivity.this, "对方已响铃。");
+                            ToastUtil.showShort(MainActivity.this, "对方已响铃");
                             callingView();
                         }
                     });
@@ -1274,7 +1299,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showShort(MainActivity.this, "对方已接听。");
+                            ToastUtil.showShort(MainActivity.this, "对方已接听åå");
                         }
                     });
                     showTime = true;
@@ -1286,25 +1311,25 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
         } else if (error != null) {
             switch (error) {
                 case REJECTED:
-                    msg = "对方已挂断。";
+                    msg = "对方已挂断";
                     break;
                 case ERROR_NO_DATA:
-                    msg = "对方号码不存在。";
+                    msg = "对方号码不存在";
                     break;
                 case ERROR_TRANSPORT:
-                    msg = "数据传输错误。";
+                    msg = "数据传输错误";
                     break;
                 case ERROR_INAVAILABLE:
-                    msg = "对方不在线。";
+                    msg = "对方不在线";
                     break;
                 case ERROR_BUSY:
-                    msg = "对方正在通话中。";
+                    msg = "对方正在通话中";
                     break;
                 case ERROR_NONENTITY:
-                    msg = "对方号码不存在。";
+                    msg = "对方号码不存在";
                     break;
                 case ERROR_NORESPONSE:
-                    msg = "对方未接通。";
+                    msg = "对方未接通";
                     break;
                 case ERROR_LOCAL_VERSION_SMALLER:
                     break;
