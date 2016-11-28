@@ -1271,7 +1271,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showShort(MainActivity.this, "正在拨号，请稍等。。。");
+                            ToastUtil.showShort(MainActivity.this, "正在拨号，请稍等");
                             callingView();
                         }
                     });
@@ -1299,7 +1299,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showShort(MainActivity.this, "对方已接听åå");
+                            ToastUtil.showShort(MainActivity.this, "对方已接听");
                         }
                     });
                     showTime = true;
@@ -1504,6 +1504,8 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
 
     //电话挂断处理
     private void callOffView() {
+        mobile = null;
+        contact = null;
         time = 0;
         showTime = false;
         if (avpupupWindow != null && avpupupWindow.isShowing()) {
