@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -79,6 +80,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends Activity implements OnClickListener, ShowOp, CallStateListener {
+    private LinearLayout ll_photo;
+    private LinearLayout ll_photo_op;
+
     private ImageView startActivity_bg_img;
     // 更新版本要用到的一些信息
     /**
@@ -614,8 +618,29 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     private void init() {
         view = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.activity_select, (ViewGroup) null, false);
+        ll_photo = (LinearLayout) view.findViewById(R.id.ll_photo);
+        ll_photo.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (popupWindow != null) popupWindow.dismiss();
+                }
+                return false;
+            }
+        });
         opView = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.activity_operation, (ViewGroup) null, false);
+        ll_photo_op = (LinearLayout) opView.findViewById(R.id.ll_photo);
+        ll_photo_op.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (oppopupWindow != null) oppopupWindow.dismiss();
+                }
+                return false;
+            }
+        });
         yuyinshipinView = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.activity_yuyinshipin, (ViewGroup) null, false);
         dtv_jietingshi = (DyneTextView) yuyinshipinView
@@ -898,11 +923,8 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
-        if(keyCode== KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0){
-            if (oppopupWindow != null)
-                oppopupWindow.dismiss();
-            if (popupWindow !=null)
-                popupWindow.dismiss();
+        if(keyCode== KeyEvent.KEYCODE_BACK){
+            moveTaskToBack(true);
         }
         return false;
     }
@@ -932,6 +954,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                             LayoutParams.MATCH_PARENT, false);
                     popupWindow.setOutsideTouchable(true);
                     popupWindow.setFocusable(true);
+                    popupWindow.setBackgroundDrawable(new BitmapDrawable());
                     popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
                 } else if (opFlag == 2) { // 语音通信
                     userJson = json.getJSONObject("obj");
@@ -1211,6 +1234,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
         }
         oppopupWindow.setOutsideTouchable(true);
         oppopupWindow.setFocusable(true);
+        oppopupWindow.setBackgroundDrawable(new BitmapDrawable());
         oppopupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
