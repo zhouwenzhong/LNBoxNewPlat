@@ -395,6 +395,7 @@
                         <org.webrtc.SurfaceViewRenderer
                             android:id="@+id/remote_video_view"
                             android:layout_width="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_height="wrap_content" >
                         </org.webrtc.SurfaceViewRenderer>
                     </com.lianyao.ftf.sdk.view.PercentFrameLayout>
@@ -407,6 +408,7 @@
                         <org.webrtc.SurfaceViewRenderer
                             android:id="@+id/local_video_view"
                             android:layout_width="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_height="wrap_content" >
                         </org.webrtc.SurfaceViewRenderer>
                     </com.lianyao.ftf.sdk.view.PercentFrameLayout>
