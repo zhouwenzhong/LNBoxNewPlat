@@ -45,6 +45,7 @@ import com.lianyao.ftf.sdk.layered.RtcCallManager;
 import com.lianyao.ftf.sdk.uitl.MtcLog;
 import com.lianyao.ftf.sdk.view.PercentFrameLayout;
 import com.lianyao.ftfbox.adapter.MovieAdapter;
+import com.lianyao.ftfbox.config.Constants;
 import com.lianyao.ftfbox.config.UpdateInfo;
 import com.lianyao.ftfbox.domain.Contact;
 import com.lianyao.ftfbox.domain.view.DyneTextView;
@@ -185,7 +186,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     if (is != null) {
                         File file = new File(
                                 Environment.getExternalStorageDirectory(),
-                                "LNFaceToFace.apk");
+                                Constants.APP_FILE);
                         fileOutputStream = new FileOutputStream(file);
                         byte[] buf = new byte[4096];   //缓冲区
                         int ch = -1;
@@ -224,7 +225,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     void update() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(new File(Environment
-                        .getExternalStorageDirectory(), "LNFaceToFaceBox.apk")),
+                        .getExternalStorageDirectory(), Constants.APP_FILE)),
                 "application/vnd.android.package-archive");
         startActivity(intent);
     }
@@ -366,7 +367,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
         client.rtcSetting.setCallRing(true, R.raw.phone_ring);
 
         boxNum = (String) SPUtil.get(MainActivity.this, "boxNum", boxNum);
-        db = DbUtils.create(this, "ftfbox.db", 1, null);
+        db = DbUtils.create(this, Constants.DB_FILE, 1, null);
 
         JSONObject param = new JSONObject();
         param.put("deviceId", AppUtil.getDeviceIMEI(this));

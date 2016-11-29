@@ -15,4 +15,6 @@ public class Constants {
 
 	public static final String APPID = "bWJozjBpVq";
 	public static final String TICKET = "C66241A1D7802B3F8287691967FCF2A6";
+	public static final String APP_FILE = "LNFaceToFaceBox.apk";
+	public static final String DB_FILE = "ftfbox.db";
 }
