@@ -3,6 +3,8 @@ package com.lianyao.ftfbox.util;
 import org.w3c.dom.Document;
 
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -62,5 +64,11 @@ public class CommonUtil {
 		}
 
 		return  str;
+	}
+
+	public static String getNowString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+		return sdf.format(new Date());
 	}
 }

@@ -19,6 +19,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager.LayoutParams;
+import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ import com.lianyao.ftf.sdk.inter.LoginCallback;
 import com.lianyao.ftf.sdk.inter.RegisterCallBack;
 import com.lianyao.ftf.sdk.layered.RtcCallManager;
 import com.lianyao.ftf.sdk.uitl.MtcLog;
+import com.lianyao.ftf.sdk.uitl.StringUtil;
 import com.lianyao.ftf.sdk.view.PercentFrameLayout;
 import com.lianyao.ftfbox.adapter.MovieAdapter;
 import com.lianyao.ftfbox.config.Constants;
@@ -188,9 +190,10 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
                     InputStream is = urlcon.getInputStream();
                     FileOutputStream fileOutputStream = null;
                     if (is != null) {
+                        apkFile = Constants.APP_FILE + "_" + CommonUtil.getNowString() + "apk";
                         File file = new File(
                                 Environment.getExternalStorageDirectory(),
-                                Constants.APP_FILE);
+                                apkFile);
                         fileOutputStream = new FileOutputStream(file);
                         byte[] buf = new byte[4096];   //缓冲区
                         int ch = -1;
@@ -229,7 +232,7 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     void update() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(new File(Environment
-                        .getExternalStorageDirectory(), Constants.APP_FILE)),
+                        .getExternalStorageDirectory(), apkFile)),
                 "application/vnd.android.package-archive");
         startActivity(intent);
     }
@@ -353,7 +356,10 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     private boolean bIsCamera = true;
     private boolean isMianti = true;
 //    private MyReceiver myReceiver;
-
+    private LinearLayout ll_full_screen;
+    private LinearLayout ll_half_screen;
+    private LinearLayout ll_camera;
+    private String apkFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -899,6 +905,10 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
             intent.setAction("myIncomingCall");
             sendBroadcast(intent);
         }
+
+        ll_full_screen = (LinearLayout) findViewById(R.id.ll_full_screen);
+        ll_half_screen = (LinearLayout) findViewById(R.id.ll_half_screen);
+        ll_camera = (LinearLayout) findViewById(R.id.ll_camera);
     }
 
     private void updateVideo(int[] local, int[] remote) {
@@ -924,7 +934,28 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
         if(keyCode== KeyEvent.KEYCODE_BACK){
-            moveTaskToBack(true);
+            if (findViewById(R.id.ll_bottom).getVisibility() == View.GONE) {
+                new AlertDialog.Builder(this).setTitle("正在通话中，确认退出吗？")
+                        .setIcon(android.R.drawable.ic_dialog_info)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                callOff();
+                                // 点击“确认”后的操作
+                                moveTaskToBack(true);
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+            }else {
+                moveTaskToBack(true);
+            }
         }
         return false;
     }
@@ -1506,6 +1537,9 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     }
 
     private void audioCallView() {
+        ll_full_screen.setVisibility(View.GONE);
+        ll_half_screen.setVisibility(View.GONE);
+        ll_camera.setVisibility(View.GONE);
         tv_phone_bigsmallscreen.setEnabled(false);
         tv_phone_bigsmallscreen.setFocusable(false);
         tv_phone_fullscreen.setEnabled(false);
@@ -1517,6 +1551,9 @@ public class MainActivity extends Activity implements OnClickListener, ShowOp, C
     }
 
     private void clearAudioCallView() {
+        ll_full_screen.setVisibility(View.VISIBLE);
+        ll_half_screen.setVisibility(View.VISIBLE);
+        ll_camera.setVisibility(View.VISIBLE);
         tv_phone_bigsmallscreen.setEnabled(true);
         tv_phone_bigsmallscreen.setFocusable(true);
         tv_phone_fullscreen.setEnabled(true);
